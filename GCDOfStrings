@@ -1,0 +1,41 @@
+/*****
+
+Intuition
+First we check if str1 + str2 == str2 + str1
+If it is equal than if find the longest common substring.
+Otherwise we return "".
+
+Approach
+Suppose str1 = "ABCABC" and str2 = "ABC"
+str1 + str2 = ABCABCABC
+str2 + str1 = ABCABCABC
+str1 + str2 == str2 + str1
+return str.substr(0, gcd(size(str1), gcd(size(str2))))
+where gcd(3, 6) = 3
+So, answer is "ABC"
+
+Also str1 = "LEET", str2 = "CODE"
+str1 + str2 = "LEETCODE"
+str2 + str1 = "CODELEET"
+So, return ""
+
+Complexity
+Time complexity: O(n)
+pace complexity: O(n)
+
+*/
+
+class GCDOfStrings {
+     public String gcdOfStrings(String str1, String str2) {
+        // Check if concatenated strings are equal or not, if not return ""
+        if (!(str1 + str2).equals(str2 + str1))
+            return "";
+        // If strings are equal than return the substring from 0 to gcd of size(str1), size(str2)
+        int gcd = gcd(str1.length(), str2.length());
+        return str1.substring(0, gcd);
+    }
+
+    private int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+}
